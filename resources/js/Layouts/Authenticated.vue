@@ -8,14 +8,15 @@ import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 
 const showingNavigationDropdown = ref(false);
+const show = ref(false);
 </script>
 
 <template>
     <div>
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-200">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class=" mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
@@ -30,7 +31,17 @@ const showingNavigationDropdown = ref(false);
                                 <BreezeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </BreezeNavLink>
+
                             </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <BreezeNavLink :href="route('communities.index')" :active="route().current('communities.index')">
+                                    Communities
+                                </BreezeNavLink>
+
+                            </div>
+
+
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -71,27 +82,36 @@ const showingNavigationDropdown = ref(false);
                 </div>
 
                 <!-- Responsive Navigation Menu -->
-                <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
-                    <div class="pt-2 pb-3 space-y-1">
-                        <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                            Dashboard
-                        </BreezeResponsiveNavLink>
-                    </div>
-
-                    <!-- Responsive Settings Options -->
-                    <div class="pt-4 pb-1 border-t border-gray-200">
-                        <div class="px-4">
-                            <div class="font-medium text-base text-gray-800">{{ $page.props.auth.user.name }}</div>
-                            <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>
-                        </div>
-
-                        <div class="mt-3 space-y-1">
-                            <BreezeResponsiveNavLink :href="route('logout')" method="post" as="button">
-                                Log Out
+                <Transition name="slide-fade">
+                    <div v-if="showingNavigationDropdown" :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
+                        <div class="pt-2 pb-3 space-y-1">
+                            <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                Dashboard
                             </BreezeResponsiveNavLink>
                         </div>
+
+                        <div class="pt-2 pb-3 space-y-1">
+                            <BreezeResponsiveNavLink :href="route('communities.index')" :active="route().current('communities.index')">
+                                Communities
+                            </BreezeResponsiveNavLink>
+                        </div>
+
+                        <!-- Responsive Settings Options -->
+                        <div class="pt-4 pb-1 border-t border-gray-200">
+                            <div class="px-4">
+                                <div class="font-medium text-base text-gray-800">{{ $page.props.auth.user.name }}</div>
+                                <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>
+                            </div>
+
+                            <div class="mt-3 space-y-1">
+                                <BreezeResponsiveNavLink :href="route('logout')" method="post" as="button">
+                                    Log Out
+                                </BreezeResponsiveNavLink>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </Transition>
+
             </nav>
 
             <!-- Page Heading -->
@@ -108,3 +128,19 @@ const showingNavigationDropdown = ref(false);
         </div>
     </div>
 </template>
+
+<style scoped>
+    .slide-fade-enter-active {
+        transition: all 0.3s ease-out;
+    }
+
+    .slide-fade-leave-active {
+        transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+    }
+
+    .slide-fade-enter-from,
+    .slide-fade-leave-to{
+    transform: translateY(10px);
+    opacity: 0;
+    }
+</style>
