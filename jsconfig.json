@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
+        "noUnusedLocals": true,
         "paths": {
             "@/*": ["resources/js/*"]
         }
