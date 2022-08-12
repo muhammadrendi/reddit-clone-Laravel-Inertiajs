@@ -8,6 +8,7 @@ import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
 const form = useForm({
     name: '',
+    username: '',
     email: '',
     password: '',
     password_confirmation: '',
@@ -30,6 +31,12 @@ const submit = () => {
                 <BreezeLabel for="name" value="Name" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
                 <BreezeInputError class="mt-2" :message="form.errors.name" />
+            </div>
+
+            <div class="mt-4">
+                <BreezeLabel for="username" value="username" />
+                <BreezeInput id="username" type="text" class="mt-1 block w-full" v-model="form.username" required autocomplete="username" />
+                <BreezeInputError class="mt-2" :message="form.errors.username" />
             </div>
 
             <div class="mt-4">
