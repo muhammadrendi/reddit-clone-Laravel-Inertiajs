@@ -17,4 +17,6 @@ class Post extends Model
         'description',
         'url'
     ];
+
+    
 }
