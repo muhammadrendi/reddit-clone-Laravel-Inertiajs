@@ -33,7 +33,8 @@ const submit = () => {
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
+        <div class="max-w-md bg-white p-6 rounded-lg shadow mx-auto mt-10">
+            <form @submit.prevent="submit">
             <div>
                 <BreezeLabel for="email" value="Email" />
                 <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
@@ -63,5 +64,7 @@ const submit = () => {
                 </BreezeButton>
             </div>
         </form>
+        </div>
+
     </BreezeGuestLayout>
 </template>

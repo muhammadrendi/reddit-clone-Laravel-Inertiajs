@@ -61,7 +61,10 @@
                                             </tr>
                                     </tbody>
                                 </table>
-                                    <Pagination :links="communities.links" />
+                                    <div v-if="communities.data.length">
+                                        <Pagination :links="communities.links" />
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
