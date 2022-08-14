@@ -17,7 +17,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/r/{slug}', [FrontendCommunityController::class, 'show'])->name('subbredit.show');
+Route::get('/r/{slug}', [FrontendCommunityController::class, 'show'])->name('community.detail');
 
 Route::group(['middleware' => ['auth', 'verified']], function(){
 

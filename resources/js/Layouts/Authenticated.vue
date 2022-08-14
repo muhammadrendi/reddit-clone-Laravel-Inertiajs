@@ -14,7 +14,7 @@ const show = ref(false);
 <template>
     <div>
         <div v-if="$page.props.flash.message" class="bg-green-400">
-            <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+            <div class="mx-auto py-3 px-3 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between flex-wrap">
                     <div class="w-0 flex-1 flex items-center">
                         <p class="ml-3 font-medium text-white truncate">
@@ -30,7 +30,7 @@ const show = ref(false);
         <div class="min-h-screen bg-gray-200">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Inertia\Inertia;
+use App\Models\Community;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class CommunityPostController extends Controller
 {
@@ -15,13 +18,21 @@ class CommunityPostController extends Controller
     {
     }
 
-    public function create()
+    public function create(Community $community)
     {
-        return "This Page Create";
+        return Inertia::render('Communities/Posts/Create', compact('community'));
     }
 
-    public function store()
+    public function store(StorePostRequest $storePostRequest, Community $community)
     {
+        $community->posts()->create([
+            'user_id' => auth()->id(),
+            'title' => $storePostRequest->title,
+            'url' => $storePostRequest->url,
+            'description' => $storePostRequest->description,
+        ]);
+
+        return Redirect::route('community.detail', $community->slug);
     }
 
     public function edit()
